@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--程序清单3.2 重复使用元素来指定多个profile-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/jee
+    http://www.springframework.org/schema/jee/spring-jee.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--为 dev profile 装配的 bean-->
+    <beans profile="dev">
+        <jdbc:embedded-database id="dataSource" type="H2">
+            <jdbc:script
+                    location="classpath:com/alan/yx/springInAction/Chapter_03/profiles/src/main/resources/schema.sql"/>
+            <jdbc:script
+                    location="classpath:com/alan/yx/springInAction/Chapter_03/profiles/src/main/resources/test-data.sql"/>
+        </jdbc:embedded-database>
+    </beans>
+
+    <!--为 prod profile 装配的 bean-->
+    <beans profile="prod">
+        <jee:jndi-lookup id="dataSource"
+                         lazy-init="true"
+                         jndi-name="jdbc/myDatabase"
+                         resource-ref="true"
+                         proxy-interface="javax.sql.DataSource"/>
+    </beans>
+</beans>
