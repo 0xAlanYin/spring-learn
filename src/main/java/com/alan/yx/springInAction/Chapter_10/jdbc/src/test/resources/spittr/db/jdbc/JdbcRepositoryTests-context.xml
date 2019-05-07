@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--程序清单10.1 使用jdbc命名空间配置嵌入式数据库-->
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script
+                location="classpath:com/alan/yx/springInAction/Chapter_10/jdbc/src/main/resources/spittr/db/jdbc/schema.sql"/>
+        <jdbc:script
+                location="classpath:com/alan/yx/springInAction/Chapter_10/jdbc/src/test/resources/spittr/db/jdbc/test-data.sql"/>
+    </jdbc:embedded-database>
+
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate"
+          c:_-ref="dataSource"/>
+
+    <bean class="com.alan.yx.springInAction.Chapter_10.jdbc.src.main.java.spittr.db.jdbc.JdbcSpitterRepository"
+          c:_-ref="jdbcTemplate"/>
+
+    <bean class="com.alan.yx.springInAction.Chapter_10.jdbc.src.main.java.spittr.db.jdbc.JdbcSpittleRepository"
+          c:_-ref="jdbcTemplate"/>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          c:_-ref="dataSource"/>
+
+</beans>
