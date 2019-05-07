@@ -1,0 +1,3 @@
+package com.alan.yx.springInAction.Chapter_07.Spittr
+
+rootProject.name = 'Spittr-Multipart'
