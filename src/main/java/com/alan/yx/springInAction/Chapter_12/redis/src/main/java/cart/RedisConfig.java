@@ -1,6 +1,5 @@
 package com.alan.yx.springInAction.Chapter_12.redis.src.main.java.cart;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
