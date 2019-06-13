@@ -1,24 +1,10 @@
 package com.alan.yx.springInAction.Chapter_13.caching.src.main.java.spittr.config;
 
-import com.alan.yx.springInAction.Chapter_12.redis.src.main.java.cart.Product;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
-import org.springframework.cache.jcache.JCacheCacheManager;
-import org.springframework.cache.support.CompositeCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 // 启动缓存
@@ -32,10 +18,10 @@ public class CachingConfig {
      * @param cm
      * @return
      */
-    @Bean
-    public EhCacheCacheManager cacheManager(CacheManager cm) {
-        return new EhCacheCacheManager(cm);
-    }
+//    @Bean
+//    public EhCacheCacheManager cacheManager(CacheManager cm) {
+//        return new EhCacheCacheManager(cm);
+//    }
 
     /**
      * 配置 EhCacheManagerFactoryBean
