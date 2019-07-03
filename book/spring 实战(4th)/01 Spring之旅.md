@@ -70,7 +70,9 @@ public class DamselRescuingKnight implements Knight {
 > 
 > 一方面，紧密耦合的代码难以测试、难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性（修复一个bug，将会出现一个或者更多新的bug）。
 > 
-> 另一方面，一定程度的耦合又是必须的——完全没有耦合的代码什么也做不了。为了完成有实际意义的功能，不同的类必须以适当的方式进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理
+> 另一方面，一定程度的耦合又是必须的——完全没有耦合的代码什么也做不了。为了完成有实际意义的功能，不同的类必须以适当的方式进行交互。
+> 
+> 总而言之，耦合是必须的，但应当被小心谨慎地管理
 
 
 #### 通过DI，对象的依赖关系将由系统中负责协调各对象的第三方组件在创建对象的时候进行设定。
@@ -105,15 +107,17 @@ public class BraveKnight implements Knight {
 
 - **构造器注入（constructor injection）**
 
-更重要的是，传入的探险类型是`Quest`，也就是所有探险任务都必须实现的一个接口。所以，BraveKnight能够响应RescueDamselQuest、SlayDragonQuest、MakeRoundTableRounderQuest等任意的Quest实现
+> 更重要的是，传入的探险类型是`Quest`，也就是所有探险任务都必须实现的一个接口。所以，BraveKnight能够响应RescueDamselQuest、SlayDragonQuest、MakeRoundTableRounderQuest等任意的Quest实现
+
+> 具体使用哪一个具体实现类，Just 交给子类！
 
 - 参数传入**接口**而不是具体实现，能更加通用和灵活
 
-要点是BraveKnight没有与任何特定的Quest实现发生耦合。对它来说，被要求挑战的探险任务只要实现了Quest接口，那么具体是哪种类型的探险就无关紧要了。这就是DI所带来的最大收益——松耦合。如果一个对象只通过接口（而不是具体实现或初始化过程）来表明依赖关系，那么这种依赖就能够在对象本身毫不知情的情况下，用不同的具体实现进行替换。
+> 要点是BraveKnight没有与任何特定的Quest实现发生耦合。对它来说，被要求挑战的探险任务只要实现了Quest接口，那么具体是哪种类型的探险就无关紧要了。这就是DI所带来的最大收益——松耦合。如果一个对象只通过接口（而不是具体实现或初始化过程）来表明依赖关系，那么这种依赖就能够在对象本身毫不知情的情况下，用不同的具体实现进行替换。
 
 - DI所带来的最大收益 ——**松耦合**
 
-对依赖进行替换的一个最常用方法就是在测试的时候使用**mock**实现。我们无法充分地测试DamselRescuingKnight，因为它是紧耦合的；但是可以轻松地测试BraveKnight，只需给它一个Quest的mock实现即可，如程序清单1.4所示
+> 对依赖进行替换的一个最常用方法就是在测试的时候使用**mock**实现。我们无法充分地测试DamselRescuingKnight，因为它是紧耦合的；但是可以轻松地测试BraveKnight，只需给它一个Quest的mock实现即可，如程序清单1.4所示
 
 - **学习 mock 做单元测试**
 
@@ -632,15 +636,17 @@ Spring旨在通过**模板封装**来消除样板式代码。Spring的JdbcTempla
 
 在下一章，你将了解如何配置Spring，从而让它知道该创建、配置和组装哪些对象。但首先，最重要的是了解容纳对象的容器。理解容器将有助于理解对象是如何被管理的。
 
-**容器是Spring框架的核心。**Spring容器使用DI管理构成应用的组件，它会创建相互协作的组件之间的关联。毫无疑问，这些对象更简单干净，更易于理解，更易于重用并且更易于进行单元测试。
+**容器是Spring框架的核心**。
+
+> Spring容器使用DI管理构成应用的组件，它会创建相互协作的组件之间的关联。毫无疑问，这些对象更简单干净，更易于理解，更易于重用并且更易于进行单元测试。
 
 Spring容器并不是只有一个。Spring自带了多个容器实现，可以**归为两种不同的类型**。
 
 - 两种不同的类型Spring容器
-- **bean工厂（由org.springframework. beans. factory.beanFactory接口定义）**是最简单的容器，提供基本的DI支持。
-- **应用上下文（由org.springframework.context.ApplicationContext接口定义）**基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。
+- **bean工厂（由org.springframework. beans. factory.beanFactory接口定义）** 是最简单的容器，提供基本的DI支持。
+- **应用上下文（由org.springframework.context.ApplicationContext接口定义）** 基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。
 
-虽然我们可以在bean工厂和应用上下文之间任选一种，但bean工厂对大多数应用来说往往太低级了，因此，**应用上下文要比bean工厂更受欢迎。**我们会把精力集中在应用上下文的使用上，不再浪费时间讨论bean工厂。
+> 虽然我们可以在bean工厂和应用上下文之间任选一种，但bean工厂对大多数应用来说往往太低级了，因此，**应用上下文要比bean工厂更受欢迎。** 我们会把精力集中在应用上下文的使用上，不再浪费时间讨论bean工厂。
 
 ### 1.2.1 使用应用上下文
 Spring自带了多种类型的应用上下文。下面罗列的几个是你最有可能遇到的。
@@ -728,7 +734,7 @@ Spring自带了多种类型的应用上下文。下面罗列的几个是你最�
 #### 数据访问与集成
 使用JDBC编写代码通常会导致大量的样板式代码，例如获得数据库连接、创建语句、处理结果集到最后关闭数据库连接。Spring的JDBC和DAO（Data Access Object）模块抽象了这些样板式代码，使我们的数据库代码变得简单明了，还可以避免因为关闭数据库资源失败而引发的问题。该模块在多种数据库服务的错误信息之上构建了一个语义丰富的异常层，以后我们再也不需要解释那些隐晦专有的SQL错误信息了！
 
-对于那些更喜欢**ORM（Object-Relational Mapping）**工具而不愿意直接使用JDBC的开发者，Spring提供了ORM模块。Spring的ORM模块建立在对DAO的支持之上，并为多个ORM框架提供了一种构建DAO的简便方式。Spring没有尝试去创建自己的ORM解决方案，而是对许多流行的ORM框架进行了集成，包括Hibernate、Java Persisternce API、Java Data Object和iBATISSQL Maps。Spring的事务管理支持所有的ORM框架以及JDBC。
+对于那些更喜欢 **ORM（Object-Relational Mapping）** 工具而不愿意直接使用JDBC的开发者，Spring提供了ORM模块。Spring的ORM模块建立在对DAO的支持之上，并为多个ORM框架提供了一种构建DAO的简便方式。Spring没有尝试去创建自己的ORM解决方案，而是对许多流行的ORM框架进行了集成，包括Hibernate、Java Persisternce API、Java Data Object和iBATIS SQL Maps。Spring的事务管理支持所有的ORM框架以及JDBC。
 
 - **ORM（Object-Relational Mapping）**
 
@@ -887,7 +893,7 @@ Spring 3.1在很大程度上聚焦于**配置改善以及其他的一些增强**
 ## 1.5 小结
 现在，你应该对Spring的功能特性有了一个清晰的认识。Spring致力于简化企业级Java开发，促进代码的松散耦合。成功的关键在于依赖注入和AOP。
 
-在本章，我们先体验了Spring的DI。DI是组装应用对象的一种方式，借助这种方式对象无需知道依赖来自何处或者依赖的实现方式。不同于自己获取依赖对象，对**象会在运行期赋予它们所依赖的对象。**依赖对象通常会通过`接口`了解所注入的对象，这样的话就能确保低耦合。
+在本章，我们先体验了Spring的DI。DI是组装应用对象的一种方式，借助这种方式对象无需知道依赖来自何处或者依赖的实现方式。不同于自己获取依赖对象，**对象会在运行期赋予它们所依赖的对象。** 依赖对象通常会通过`接口`了解所注入的对象，这样的话就能确保低耦合。
 
 除了DI，我们还简单介绍了Spring对AOP的支持。AOP可以帮助应用将散落在各处的逻辑汇集于一处——切面。当Spring装配bean的时候，这些切面能够在运行期编织起来，这样就能非常有效地赋予bean新的行为。
 
@@ -896,5 +902,3 @@ Spring 3.1在很大程度上聚焦于**配置改善以及其他的一些增强**
 闲言少叙，我们立即转到第2章学习如何在Spring中使用DI装配对象。
 
 > [1]对于基于Java的配置，Spring提供了AnnotationConfigApplicationContext。
-> 
-> [2]相对于NoSQL，我更喜欢非关系型（non-relational）或无模式（schema-less）这样的术语。将这些数据库称之为NoSQL，实际上将问题归因于查询语言，而不是数据模型。
