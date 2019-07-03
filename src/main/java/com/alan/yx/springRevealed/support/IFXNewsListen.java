@@ -1,4 +1,4 @@
-package com.alan.yx.springrevealed.chap2.support;
+package com.alan.yx.springRevealed.support;
 
 /**
  * @author yinxing

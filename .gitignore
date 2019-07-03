@@ -2,3 +2,5 @@
 .idea
 .mvn
 spring-learn.iml
+target
+logs

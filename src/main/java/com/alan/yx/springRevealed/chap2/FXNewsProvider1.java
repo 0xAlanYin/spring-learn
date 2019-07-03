@@ -1,7 +1,7 @@
-package com.alan.yx.springrevealed.chap2;
+package com.alan.yx.springRevealed.chap2;
 
-import com.alan.yx.springrevealed.chap2.support.IFXNewsListen;
-import com.alan.yx.springrevealed.chap2.support.IFXNewsPesister;
+import com.alan.yx.springRevealed.support.IFXNewsListen;
+import com.alan.yx.springRevealed.support.IFXNewsPesister;
 
 /**
  * 构造器注入依赖
