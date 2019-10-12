@@ -111,13 +111,51 @@ ClassPathXmlApplicationContext|从类路径下的一个或多个XML配置文件�
 FileSystemXmlapplicationcontext|从文件系统下的一个或多个XML配置文件中加载上下文定义。
 XmlWebApplicationContext|从Web应用下的一个或多个XML配置文件中加载上下文定义。
 
-####
+#### 传统的 bean 生命周期是什么样的？
 
-####
+一般就是使用Java关键字new进行bean实例化，然后该bean就可以使用了。一旦该bean不再被使用，则由Java自动进行垃圾回收。
 
-####
+> 简单粗暴，在 new 或者销毁回收 的过程能够做的事非常有限，操作也很麻烦(比如用反射)
 
-####
+#### Spring bean的生命周期是什么样的？[非常重要]
+
+<div align="center"> <img src="pics/1-1.png" width="500" style="zoom:100%"/> </div><br>
+
+在bean准备就绪之前，bean工厂执行了若干启动步骤。我们对图1.5进行详细描述：
+
+1.Spring对bean进行实例化
+
+2.Spring将值和bean的引用(引用其他bean)注入到bean对应的属性中
+
+> 比如通过构造函数、类中注入的接口/类的引用
+
+3.如果bean实现了BeanNameAware接口，Spring将bean的ID传递给setBeanName()方法；
+
+4.如果bean实现了BeanFactoryAware接口，Spring将调用setBeanFactory()方法，将BeanFactory容器实例传入；
+
+5.如果bean实现了ApplicationContextAware接口，Spring将调用setApplicationContext()方法，将bean所在的应用上下文的引用传入进来；
+
+> 3个 aware,从名字上看的出，它实现这个接口是为了让自己被发现（“意识到”），至于具体你想让自己什么东西被容器发现并生效，就选用合适的接口
+
+6.如果bean实现了BeanPostProcessor接口，Spring将调用它们的postProcessBeforeInitialization()方法；
+
+7.如果bean实现了InitializingBean接口，Spring将调用它们的afterPropertiesSet()方法。类似地，如果bean使用init-method声明了初始化方法，该方法也会被调用；
+
+8.如果bean实现了BeanPostProcessor接口，Spring将调用它们的post-ProcessAfterInitialization()方法；
+
+> BeanPostProcessor 和 InitializingBean的3个方法之间的关系就好像汉堡包🍔中的两块面包(before/after)和夹心鸡肉🍗(afterPropertiesSet)
+
+9.此时，bean已经准备就绪，可以被应用程序使用了，它们将一直驻留在应用上下文中，直到该应用上下文被销毁；
+
+10.如果bean实现了DisposableBean接口，Spring将调用它的destroy()接口方法。同样，如果bean使用destroy-method声明了销毁方法，该方法也会被调用。
+
+#### spring 有哪些核心的模块？
+
+<div align="center"> <img src="pics/1-2.png" width="500" style="zoom:100%"/> </div><br>
+
+#### spring 5.x 有哪些新特性？
+
+todo
 
 ####
 
