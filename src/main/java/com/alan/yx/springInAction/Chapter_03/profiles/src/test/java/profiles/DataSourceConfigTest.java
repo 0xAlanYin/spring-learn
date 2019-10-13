@@ -58,7 +58,8 @@ public class DataSourceConfigTest {
     }
 
     @RunWith(SpringJUnit4ClassRunner.class)
-    @ContextConfiguration("classpath:datasource-config.xml")
+    // 这里正常使用相对路径，只是演示
+    @ContextConfiguration("classpath:com/alan/yx/springInAction/Chapter_03/profiles/src/main/resources/datasource-config.xml")
     @ActiveProfiles("dev")
     public static class DevDataSourceTest_XMLConfig {
         @Autowired
@@ -81,7 +82,7 @@ public class DataSourceConfigTest {
     }
 
     @RunWith(SpringJUnit4ClassRunner.class)
-    @ContextConfiguration("classpath:datasource-config.xml")
+    @ContextConfiguration("classpath:com/alan/yx/springInAction/Chapter_03/profiles/src/main/resources/datasource-config.xml")
     @ActiveProfiles("prod")
     public static class ProductionDataSourceTest_XMLConfig {
         @Autowired(required = false)

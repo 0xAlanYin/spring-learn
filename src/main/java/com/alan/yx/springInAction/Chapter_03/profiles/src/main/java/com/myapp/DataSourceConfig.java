@@ -18,7 +18,7 @@ public class DataSourceConfig {
      *
      * @return
      */
-    @Bean(destroyMethod = "shutdown")
+    @Bean
     @Profile("dev")
     public DataSource embeddedDataSource() {
         return new EmbeddedDatabaseBuilder()

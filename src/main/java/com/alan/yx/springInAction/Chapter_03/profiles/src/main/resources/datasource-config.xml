@@ -13,7 +13,7 @@
 
     <!--为 dev profile 装配的 bean-->
     <beans profile="dev">
-        <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:embedded-database id="dev-dataSource" type="H2">
             <jdbc:script
                     location="classpath:com/alan/yx/springInAction/Chapter_03/profiles/src/main/resources/schema.sql"/>
             <jdbc:script
@@ -23,7 +23,7 @@
 
     <!--为 prod profile 装配的 bean-->
     <beans profile="prod">
-        <jee:jndi-lookup id="dataSource"
+        <jee:jndi-lookup id="prod-dataSource"
                          lazy-init="true"
                          jndi-name="jdbc/myDatabase"
                          resource-ref="true"

@@ -5,6 +5,9 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
+/**
+ * 设置给 @Conditional 的类必须实现了Condition接口
+ */
 public class MagicExistsCondition implements Condition {
 
   @Override
@@ -12,5 +15,5 @@ public class MagicExistsCondition implements Condition {
     Environment env = context.getEnvironment();
     return env.containsProperty("magic");
   }
-  
+
 }
