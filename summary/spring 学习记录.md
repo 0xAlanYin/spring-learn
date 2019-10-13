@@ -3,7 +3,7 @@ spring 学习记录
 
 # spring 实战
 
-## 第 1 章 Spring 之旅
+## I. Spring 之旅
 
 #### Spring 的目的是什么？
 
@@ -29,13 +29,13 @@ spring 学习记录
 
 方式|备注
 ----|----
-构造器|注入的是接口，不是实现类(更加的通用和灵活)bang　
-组合|
+构造器|注入的是接口，不是实现类(更加的通用和灵活)👍🏻　
+setter 方法|推荐对强依赖使用构造器注入，而对可选性的依赖使用属性注入
 
 
 #### 什么是装配？
 
-创建应用组件之间协作的行为
+创建应用对象之间协作关系的行为称为装配（wiring），这是依赖注入（DI）的本质。
 
 > 就好像汽车中各个配件组合到一起做成发动机
 
@@ -157,25 +157,106 @@ XmlWebApplicationContext|从Web应用下的一个或多个XML配置文件中加�
 
 todo
 
-####
+## II.装配 Bean
 
-####
+#### 为什么需要装配？
 
-####
+任何一个成功的应用都是由多个相互协作的组件构成从而实现某一个业务目标。这些组件必须彼此了解，并且相互协作来完成工作，这就需要装配。
 
-####
+> 这就好比你使用某个购物软件 shopping,里面有订单组件、支付组件、认证组件等，它们需要携手合作，才能让你体验买买买的快乐。
+> 
+> 就好像拍一部大片，需要导演、编剧、演员、摄影师等通力合作，否则就会乱成一锅粥。😭
 
-####
+#### spring 中对象装配是什么样的？
 
-####
+在Spring中，对象无需自己查找或创建与其所关联的其他对象。相反，容器负责把需要相互协作的对象引用赋予各个对象，他是一个“大管家”。
 
-####
+> 比如购物中的订单组件需要依赖支付组件和认证组件，它只需向容器表示自己“两手空空”，容器就会给它想要的关联对象，是不是很羡慕。
 
-####
+#### spring 有哪些主要的装配机制？
 
-####
+方式|描述
+----|----
+XML中显式配置|
+Java中显式配置|显式配置时，Java Config是比 XML 更好的方案，因为它更为强大、类型安全并且对重构友好
+隐式的bean发现机制和自动装配|极力“吐血”推荐
 
-####
+推荐: 自动配置 > java 配置 > xml 配置
+
+> 如果能自动配置，既然能减少显示配置的成本(好便利啊)，又能多出时间干点有意思的事情，何乐而不为呢？
+
+#### 怎么实现自动装配？
+
+强大威力的秘诀在于：组件扫描(component scanning) + 自动装配(autowiring)
+
+> - 前者让 spring 发现 ApplicationContext 中的 bean
+> 
+> 组件扫描就像一个“千里眼”👀一样，将 ApplicationContext 所有的 bean “小家伙”全部找出来，无处可藏(前提得有标记，如 @Componet,不然看大千世界可得“累坏”了)
+> 
+> - 后者让 spring 自动满足 bean 之间的依赖
+> 
+> 后者就好像是把依赖的对象请进容器的家门，spring 内部就给他安排上“关系图谱”，他就知道自己和其他对象是怎么依赖的，很清楚自己的“定位”
+
+#### 怎么实现组件扫描呢？
+
+@ComponentScan + @Component/@Service/@Controller/@RestController/@Configuration等等
+
+> - @ComponentScan：用于 spring 开启组件扫描(“千里眼”模式打开)
+> 
+> 它会扫描指定基础包（base package）及其包下面的子包(你让他满世界扫描，是不是太不现实了，就好像考试范围指定的跟“宇宙一样大”)
+> 
+> 如 @ComponentScan(basePackages = {"soundsystem","video"})
+> 
+> - @Component等: 为了让扫描时发现自己是个组件，其他类似注解都是它的组合注解，不过业务描述性更加清晰
+> 
+> (不然你想想，满应用的@Component注解，这个组件干嘛的不是那么明显，毕竟各个具体的组件也想来点不一样的 "style",有自己的名字，虽然骨子里是一样的)
+
+#### @ComponentScan 注解有哪些要点呢？
+
+@ComponentScan 会扫描指定基础包（base package）及其包下面的子包(你让他满世界扫描，是不是太不现实了，就好像考试范围指定的跟“宇宙一样大”)
+
+用法形如: @ComponentScan(basePackages = {"soundsystem","video"}), 更多用法请参见文档和源码
+
+#### @Autowired 注解实现自动装配有哪些要点？
+
+要点|描述
+----|----
+使用场合|可以用在构造方法和普通方法上
+常见属性|requried: 设置成 false 要谨防 NPE(空指针异常)
+
+#### 怎么通过Java代码装配 bean ?
+
+关键在于: @Configuration + @Bean
+
+> @Configuration 注解表明这个类是一个配置类，该类应该包含在 Spring 应用上下文中如何创建 bean 的细节。
+> 
+> @Bean 用于声明 bean:
+> 
+> - 告诉 Spring 这个方法将会返回一个对象，该对象要注册为 Spring 应用上下文中的 bean 
+> - 默认情况下，bean的ID与带有@Bean注解的方法名是一样的
+
+【编程推荐】由于 JavaConfig 是配置代码，则不应该包含任何业务逻辑，JavaConfig也不应该侵入到业务逻辑代码之中。因此，**推荐将JavaConfig放到单独的包中，使它与其他的应用程序逻辑分离开来，这样对于它的意图就不会产生困惑**。
+
+> 比如常见的就是单独放在一个 config 目录下
+
+#### XML 配置有些常见点？
+
+- 所有的 bean 都在 `<beans>` 根元素下
+
+- bean 标签： `<bean>`
+
+> 示例：`<bean id="cdPlayer" class="soundsystem.CDPlayer">`
+
+- 构造器标签 `<constructor-arg>`
+
+> 示例: `<constructor-arg ref="compactDisc">`
+
+#### @Import 注解是做什么的？
+
+* 声明一个bean
+* 导入@Configuration注解的配置类
+* 导入ImportSelector的实现类
+* 导入ImportBeanDefinitionRegistrar的实现类
 
 ####
 

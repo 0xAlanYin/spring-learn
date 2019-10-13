@@ -625,8 +625,8 @@ cdPlayer()的方法体与sgtPeppers()稍微有些区别。在这里并没有使�
 
 就这样，我们已经有了一个合法的Spring XML配置。不过，它也是一个没有任何用处的配置，因为它（还）没有声明任何bean。为了给予它生命力，让我们重新创建一下CD样例，只不过我们这次使用XML配置，而不是使用JavaConfig和自动化装配。
 
-### 2.4.2 声明一个简单的<bean>
-要在基于XML的Spring配置中声明一个bean，我们要使用spring-beans模式中的另外一个元素：**<bean>**。<bean>元素类似于JavaConfig中的@Bean注解。我们可以按照如下的方式声明CompactDisc bean：
+### 2.4.2 声明一个简单的 bean
+要在基于XML的Spring配置中声明一个bean，我们要使用spring-beans模式中的另外一个元素：**bean**。'bean'元素类似于JavaConfig中的@Bean注解。我们可以按照如下的方式声明CompactDisc bean：
 
 ~~~
 <bean class="soundsystem.SgtPeppers"/>
@@ -650,7 +650,7 @@ cdPlayer()的方法体与sgtPeppers()稍微有些区别。在这里并没有使�
 
 第一件需要注意的事情就是你不再需要直接负责创建SgtPeppers的实例，在基于JavaConfig的配置中，我们是需要这样做的。当Spring发现这个<bean>元素时，它将会调用SgtPeppers的默认构造器来创建bean。在XML配置中，bean的创建显得更加被动，不过，它并没有**JavaConfig那样强大**，在JavaConfig配置方式中，你可以通过任何可以想象到的方法来创建bean实例。
 
-另外一个需要注意到的事情就是，在这个简单的<bean>声明中，我们将bean的类型以字符串的形式设置在了class属性中。谁能保证设置给class属性的值是真正的类呢？**Spring的XML配置并不能从编译期的类型检查中受益。**即便它所引用的是实际的类型，如果你重命名了类，会发生什么呢？(容易出错)
+另外一个需要注意到的事情就是，在这个简单的<bean>声明中，我们将bean的类型以字符串的形式设置在了class属性中。谁能保证设置给class属性的值是真正的类呢？ **Spring的XML配置并不能从编译期的类型检查中受益。** 即便它所引用的是实际的类型，如果你重命名了类，会发生什么呢？(容易出错)
 
 > 借助IDE检查XML的合法性使用能够感知Spring功能的IDE，如Spring Tool Suite，能够在很大程度上帮助你确保Spring XML配置的合法性。
 
