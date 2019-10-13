@@ -258,6 +258,8 @@ Java中显式配置|显式配置时，Java Config是比 XML 更好的方案，�
 * 导入ImportSelector的实现类
 * 导入ImportBeanDefinitionRegistrar的实现类
 
+> 具体示例可以参见[代码](https://github.com/Alanyx/spring-learn/tree/master/topic/import-annotation): 
+
 ####
 
 ####
