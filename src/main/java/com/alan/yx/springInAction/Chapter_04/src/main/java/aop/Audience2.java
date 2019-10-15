@@ -50,7 +50,9 @@ public class Audience2 {
     }
 
     /**
-     * 环绕通知方法
+     * 环绕通知方法【重点】
+     * <p>
+     * 通知方法中可以做任何的事情，当要将控制权交给被通知的方法时，它需要调用ProceedingJoinPoint的proceed()方法。
      *
      * @param jp
      */
@@ -59,6 +61,7 @@ public class Audience2 {
         try {
             System.out.println("silenceCellPhones");
             System.out.println("takeSeats");
+            // 调用目标类的方法
             jp.proceed();
             System.out.println("applause");
         } catch (Throwable throwable) {

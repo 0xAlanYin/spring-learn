@@ -5,10 +5,11 @@ package com.alan.yx.springInAction.Chapter_04.src.main.java;
  * @date 2019/4/26
  */
 
-public class DefaultEncoreable implements Encoreable{
+public class DefaultEncoreable implements Encoreable {
 
     @Override
     public void performEncore() {
-
+        System.out.println("DefaultEncoreable");
     }
+
 }

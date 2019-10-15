@@ -1,11 +1,10 @@
 package com.alan.yx.springInAction.Chapter_04.src.main.java.aop;
 
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 
 /**
+ * 使用 @Aspect 定义切面
+ *
  * @author yinxing
  * @date 2019/4/26
  */
@@ -33,7 +32,7 @@ public class Audience {
      * 表演之后（鼓掌）
      */
     @AfterReturning("execution(* com.alan.yx.springInAction.Chapter_04.src.main.java.Performance.perform(..))")
-    public void applause(){
+    public void applause() {
         System.out.println("applause");
     }
 
@@ -41,7 +40,7 @@ public class Audience {
      * 表演失败之后(退款)
      */
     @AfterThrowing("execution(* com.alan.yx.springInAction.Chapter_04.src.main.java.Performance.perform(..))")
-    public void demandRefund(){
+    public void demandRefund() {
         System.out.println("demandRefund");
     }
 }
