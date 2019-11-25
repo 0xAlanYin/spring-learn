@@ -18,6 +18,12 @@
                 <!-- ...other tracks omitted for brevity... -->
             </list>
         </constructor-arg>
+        <!--<property name="p">-->
+            <!--<list>-->
+                <!--<value>aaa</value>-->
+                <!--<value>bbb</value>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
 
 </beans>
