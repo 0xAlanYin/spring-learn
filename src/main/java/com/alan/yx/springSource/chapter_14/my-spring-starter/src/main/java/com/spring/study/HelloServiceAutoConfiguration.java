@@ -1,5 +1,6 @@
 package com.spring.study;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan({"com.spring.study.module"})
+// 如果配置属性中显示的声明 study.enable=true，则当前的整套体系才生效
+@ConditionalOnProperty(prefix = "study",name="enable",havingValue = "true")
 public class HelloServiceAutoConfiguration {
 
 }
