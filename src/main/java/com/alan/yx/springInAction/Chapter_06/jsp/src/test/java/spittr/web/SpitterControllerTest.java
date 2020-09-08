@@ -1,15 +1,15 @@
 package com.alan.yx.springInAction.Chapter_06.jsp.src.test.java.spittr.web;
 
+import com.alan.yx.springInAction.Chapter_06.jsp.src.main.java.spittr.Spitter;
+import com.alan.yx.springInAction.Chapter_06.jsp.src.main.java.spittr.data.SpitterRepository;
+import com.alan.yx.springInAction.Chapter_06.jsp.src.main.java.spittr.web.SpitterController;
+import org.junit.Test;
+import org.springframework.test.web.servlet.MockMvc;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-
-import org.junit.Test;
-import org.springframework.test.web.servlet.MockMvc;
-
-import com.alan.yx.springInAction.Chapter_06.jsp.src.main.java.spittr.Spitter;
-import com.alan.yx.springInAction.Chapter_06.jsp.src.main.java.spittr.data.SpitterRepository;
 
 public class SpitterControllerTest {
 

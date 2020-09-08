@@ -1,4 +1,7 @@
-package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights;
+package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.aop;
+
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Knight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Quest;
 
 /**
  * 示例 1.10

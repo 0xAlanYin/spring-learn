@@ -1,4 +1,4 @@
-package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights;
+package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.template_method;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;

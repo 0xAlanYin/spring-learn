@@ -13,13 +13,10 @@
     </skin>
 
     <body>
-
         <links>
             <item name="${project.name}" href="index.html"/>
         </links>
-
         <menu ref="reports"/>
-
     </body>
 
 </project>

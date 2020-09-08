@@ -1,5 +1,8 @@
-package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights;
+package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di;
 
+/**
+ * 反例: 传统依赖注入紧耦合
+ */
 public class DamselRescuingKnight implements Knight {
 
     private RescueDamselQuest quest;

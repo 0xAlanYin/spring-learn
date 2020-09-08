@@ -1,6 +1,6 @@
 package com.alan.yx.springInAction.Chapter_01.knight.src.test.java.sia.knights;
 
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Knight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Knight;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -7,16 +7,16 @@
 		http://www.springframework.org/schema/beans 
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight">
+    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight">
         <constructor-arg ref="quest"/>
     </bean>
 
-    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.SlayDragonQuest">
+    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.SlayDragonQuest">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
     <!--声明 Minstrel bean-->
-    <bean id="minstrel" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Minstrel">
+    <bean id="minstrel" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.aop.Minstrel">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 

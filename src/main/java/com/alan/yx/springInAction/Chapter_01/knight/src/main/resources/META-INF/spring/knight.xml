@@ -5,12 +5,13 @@
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 创建 BraveKnight-->
-    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight">
+    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight">
         <!--注入 quest bean-->
         <constructor-arg ref="quest"/>
     </bean>
 
-    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.SlayDragonQuest">
+    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.SlayDragonQuest">
+        <!--这里使用了 Spring 表达式语言（Spring ExpressionLanguage）-->
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 

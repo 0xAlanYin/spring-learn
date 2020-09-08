@@ -1,4 +1,6 @@
-package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights;
+package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di;
+
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Quest;
 
 /**
  * 救援行动

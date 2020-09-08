@@ -1,9 +1,9 @@
 package com.alan.yx.springInAction.Chapter_01.knight.src.test.java.sia.knights;
 
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Knight;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Quest;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.SlayDragonQuest;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Knight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Quest;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.SlayDragonQuest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,7 +1,6 @@
-package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights;
+package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di;
 
-import org.springframework.context.support.
-        ClassPathXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Spring 通过 ApplicationContext 装配 bean 的定义并组装起来

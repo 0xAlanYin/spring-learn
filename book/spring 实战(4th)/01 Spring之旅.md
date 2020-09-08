@@ -126,8 +126,8 @@ public class BraveKnight implements Knight {
 ~~~
 package com.alan.yx.springInAction.Chapter_01.knight.src.test.java.sia.knights;
 
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Quest;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Quest;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
@@ -189,12 +189,12 @@ Spring有多种装配bean的方式，采用`XML`是很常见的一种装配方�
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 创建 BraveKnight-->
-    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight">
+    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight">
         <!--注入 quest bean-->
         <constructor-arg ref="quest"/>
     </bean>
 
-    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.SlayDragonQuest">
+    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.SlayDragonQuest">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
@@ -213,10 +213,10 @@ Spring有多种装配bean的方式，采用`XML`是很常见的一种装配方�
 ~~~
 package com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.config;
 
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Knight;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Quest;
-import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.SlayDragonQuest;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Knight;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.Quest;
+import com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.SlayDragonQuest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -280,13 +280,15 @@ public class KnightMain {
 现在让我们再关注Spring简化Java开发的下一个理念：**基于切面进行声明式编程**。
 
 ### 1.1.3 应用切面
-- DI能够让相互协作的软件组件保持松散耦合，而**面向切面编程（aspect-orientedprogramming，AOP）**允许你把**遍布应用各处的功能分离出来形成可重用的组件**。
+
+- DI能够让相互协作的软件组件保持松散耦合，而**面向切面编程（aspect-oriented programming，AOP）**允许你把**遍布应用各处的功能分离出来形成可重用的组件**。
 
 面向切面编程往往被定义为促使软件系统实现关注点的分离一项技术。系统由许多不同的组件组成，每一个组件各负责一块特定功能。除了实现自身核心的功能之外，这些组件还经常承担着额外的职责。诸如日志、事务管理和安全这样的系统服务经常融入到自身具有核心业务逻辑的组件中去，这些系统服务通常被称为**横切关注点**，因为它们会跨越系统的多个组件。
 
 - **横切关注点**
 
 #### 为什么需要 AOP？
+
 如果将这些关注点分散到多个组件中去，你的代码将会带来双重的复杂性。
 
 * 实现系统关注点功能的代码将会`重复出现`在多个组件中。这意味着如果你要改变这些关注点的逻辑，必须修改各个模块中的相关实现。即使你把这些关注点抽象为一个独立的模块，其他模块只是调用它的方法，但方法的调用还是会重复出现在各个模块中。
@@ -407,16 +409,16 @@ public class BraveKnightWithoutAOP implements Knight {
 		http://www.springframework.org/schema/beans 
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.BraveKnight">
+    <bean id="knight" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.BraveKnight">
         <constructor-arg ref="quest"/>
     </bean>
 
-    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.SlayDragonQuest">
+    <bean id="quest" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.di.SlayDragonQuest">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
     <!--声明 Minstrel bean-->
-    <bean id="minstrel" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.Minstrel">
+    <bean id="minstrel" class="com.alan.yx.springInAction.Chapter_01.knight.src.main.java.sia.knights.aop.Minstrel">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
@@ -623,7 +625,7 @@ Spring旨在通过**模板封装**来消除样板式代码。Spring的JdbcTempla
     }
 ~~~
 
-正如你所看到的，新版本的getEmployeeById()简单多了，而且仅仅关注于从数据库中查询员工。模板的queryForObject()方法需要一个SQL查询语句，一个RowMapper对象（把数据映射为一个域对象），零个或多个查询参数。GetEmp loyeeById()方法再也看不到以前的JDBC样板式代码了，它们全部被封装到了模板中。
+正如你所看到的，新版本的getEmployeeById()简单多了，而且仅仅关注于从数据库中查询员工。模板的queryForObject()方法需要一个SQL查询语句，一个RowMapper对象（把数据映射为一个域对象），零个或多个查询参数。GetEmployeeById() 方法再也看不到以前的JDBC样板式代码了，它们全部被封装到了模板中。
 
 我已经向你展示了Spring通过面向POJO编程、DI、切面和模板技术来简化Java开发中的复杂性。在这个过程中，我展示了在基于XML的配置文件中如何配置bean和切面，但这些文件是如何加载的呢？它们被加载到哪里去了？让我们再了解下Spring容器，这是应用中的所有bean所驻留的地方。
 
