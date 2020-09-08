@@ -1,4 +1,5 @@
 ## 第9章 保护Web应用
+
 本章内容：
 
 - Spring Security介绍
@@ -11,7 +12,8 @@
 
 如果你觉得安全性听上去好像是使用面向切面技术实现的，那你猜对了。在本章中，我们将使用切面技术来探索保护应用程序的方式。不过我们不必自己开发这些切面——我们将介绍Spring Security，这是一种基于Spring AOP和Servlet规范中的Filter实现的安全框架。
 
-## 9.1Spring Security简介
+## 9.1 Spring Security简介
+
 Spring Security是为基于Spring的应用程序提供声明式安全保护的安全性框架。Spring Security提供了完整的安全性解决方案，它能够在Web请求级别和方法调用级别处理身份认证和授权。因为基于Spring框架，所以Spring Security充分利用了依赖注入（dependency injection，DI）和面向切面的技术。
 
 最初，Spring Security被称为Acegi Security。Acegi是一个强大的安全框架，但是它存在一个严重的问题：那就是需要大量的XML配置。我不会向你介绍这种复杂配置的细节。总之一句话，典型的Acegi配置有几百行XML是很常见的。
@@ -27,6 +29,7 @@ Spring Security是为基于Spring的应用程序提供声明式安全保护的�
 在本章中，我们将会关注如何将Spring Security用于Web层的安全性之中。在稍后的第14章中，我们会重新学习Spring Security，了解它如何保护方法的调用。
 
 ### 9.1.1 理解Spring Security的模块
+
 不管你想使用Spring Security保护哪种类型的应用程序，第一件需要做的事就是将SpringSecurity模块添加到应用程序的类路径下。Spring Security 3.2分为11个模块，如表9.1所示。
 
 表9.1 Spring Security被分成了11个模块
@@ -40,6 +43,7 @@ Spring Security是为基于Spring的应用程序提供声明式安全保护的�
 现在，我们已经为在Spring Security中进行安全性配置做好了准备。让我们看看如何使用Spring Security的XML命名空间。
 
 ### 9.1.2 过滤Web请求
+
 Spring Security借助一系列Servlet Filter来提供各种安全性功能。你可能会想，这是否意味着我们需要在web.xml或WebApplicationInitializer中配置多个Filter呢？实际上，借助于Spring的小技巧，我们只需配置一个Filter就可以了。
 
 DelegatingFilterProxy是一个特殊的Servlet Filter，它本身所做的工作并不多。只是将工作委托给一个javax.servlet.Filter实现类，这个实现类作为一个<bean>注册在Spring应用的上下文中，如图9.1所示。
@@ -136,6 +140,7 @@ protected void configure(HttpSecurity http) throws Exception {
 但首先，我们看一下如何在认证的过程中配置访问用户数据的服务。
 
 ## 9.2 选择查询用户详细信息的服务
+
 假如你计划去一个独家经营的饭店享受一顿晚餐，当然，你会提前几周预订，保证到时候能有一个位置。当到达饭店的时候，你会告诉服务员你的名字。但令人遗憾的是，里面并没有你的预订记录。美好的夜晚眼看就要泡汤了。但是没有人会如此轻易地放弃，你会要求服务员再次确认预订名单。此时，事情变得有些怪异了。
 
 服务员说没有预订名单。你的名字不在名单上——名单上没有任何人——因为根本就不存在这么个名单。这就解释了为什么位置是空的，但我们却进不去。几周后，我们也就明白这家饭店为何最终会关门大吉，被一家墨西哥美食店所代替。

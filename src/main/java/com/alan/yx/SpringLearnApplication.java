@@ -18,7 +18,7 @@ public class SpringLearnApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //		testAware();
 //        testEvent();
-        testConverter();
+//        testConverter();
     }
 
     /**
