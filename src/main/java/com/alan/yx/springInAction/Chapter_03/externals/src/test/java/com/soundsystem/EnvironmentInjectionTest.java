@@ -1,6 +1,9 @@
 package com.alan.yx.springInAction.Chapter_03.externals.src.test.java.com.soundsystem;
 
 import com.alan.yx.springInAction.Chapter_03.externals.src.main.java.com.soundsystem.BlankDisc;
+import com.alan.yx.springInAction.Chapter_03.externals.src.main.java.com.soundsystem.EnvironmentConfig;
+import com.alan.yx.springInAction.Chapter_03.externals.src.main.java.com.soundsystem.EnvironmentConfigWithDefaults;
+import com.alan.yx.springInAction.Chapter_03.externals.src.main.java.com.soundsystem.EnvironmentConfigWithRequiredProperties;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.BeanCreationException;
@@ -53,7 +56,7 @@ public class EnvironmentInjectionTest {
   }
 
   @RunWith(SpringJUnit4ClassRunner.class)
-  @ContextConfiguration("classpath:placeholder-config.xml")
+  @ContextConfiguration("classpath:com/alan/yx/springInAction/Chapter_03/externals/src/main/resources/placeholder-config.xml")
   public static class InjectFromProperties_XMLConfig {
   
     @Autowired

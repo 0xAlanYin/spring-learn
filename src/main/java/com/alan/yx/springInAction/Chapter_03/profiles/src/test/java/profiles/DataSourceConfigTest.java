@@ -1,6 +1,6 @@
 package com.alan.yx.springInAction.Chapter_03.profiles.src.test.java.profiles;
 
-import com.alan.yx.springInAction.Chapter_03.profiles.src.main.java.com.myapp.DataSourceConfig;
+import com.alan.yx.springInAction.Chapter_03.profiles.src.main.java.com.myapp.method_profile.DataSourceConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-
+/**
+ * 使用 @ActiveProfiles("dev") 在集成测试时，激活不同的 profile
+ */
 public class DataSourceConfigTest {
 
     @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,7 +33,7 @@ public class DataSourceConfigTest {
         public void shouldBeEmbeddedDatasource() {
             assertNotNull(dataSource);
             JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-            List<String> results = jdbc.query("select id, name from Things", new RowMapper<String>() {
+            List<String> results = jdbc.query("SELECT id, name FROM Things", new RowMapper<String>() {
                 @Override
                 public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                     return rs.getLong("id") + ":" + rs.getString("name");
@@ -69,7 +71,7 @@ public class DataSourceConfigTest {
         public void shouldBeEmbeddedDatasource() {
             assertNotNull(dataSource);
             JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-            List<String> results = jdbc.query("select id, name from Things", new RowMapper<String>() {
+            List<String> results = jdbc.query("SELECT id, name FROM Things", new RowMapper<String>() {
                 @Override
                 public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                     return rs.getLong("id") + ":" + rs.getString("name");

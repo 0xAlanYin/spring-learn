@@ -72,6 +72,16 @@
             <groupId>aspectj</groupId>
             <version>1.5.3</version>
         </dependency>
+        <dependency>
+            <artifactId>spring-jdbc</artifactId>
+            <groupId>org.springframework</groupId>
+            <version>5.2.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <artifactId>javax.inject</artifactId>
+            <groupId>javax.inject</groupId>
+            <version>1</version>
+        </dependency>
     </dependencies>
 
     <build>

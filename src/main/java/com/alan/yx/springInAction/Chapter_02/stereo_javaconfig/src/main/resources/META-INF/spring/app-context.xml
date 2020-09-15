@@ -7,6 +7,6 @@
 	http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="soundsystem" />
+	<context:component-scan base-package="com.alan.yx.springInAction.Chapter_02.stereo_javaconfig.src.main.java.soundsystem" />
 
 </beans>
