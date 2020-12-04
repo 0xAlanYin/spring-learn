@@ -3,14 +3,14 @@ package com.alan.yx.springInAction.Chapter_04.src.main.java.aop;
 import org.aspectj.lang.annotation.*;
 
 /**
- * 使用 @Aspect 定义切面
+ * 使用 @Aspect 定义切面:不太好的一点是 execution 表达式重复写了很多遍
  *
  * @author yinxing
  * @date 2019/4/26
  */
 
 @Aspect
-public class Audience {
+public class BadAudience {
 
     /**
      * 表演之前

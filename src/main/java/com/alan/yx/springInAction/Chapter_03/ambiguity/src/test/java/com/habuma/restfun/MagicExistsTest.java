@@ -1,6 +1,6 @@
 package com.alan.yx.springInAction.Chapter_03.ambiguity.src.test.java.com.habuma.restfun;
 
-import com.alan.yx.springInAction.Chapter_03.ambiguity.src.main.java.com.habuma.restfun.MagicConfig;
+import com.alan.yx.springInAction.Chapter_03.conditional.src.main.java.com.habuma.restfun.MagicConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

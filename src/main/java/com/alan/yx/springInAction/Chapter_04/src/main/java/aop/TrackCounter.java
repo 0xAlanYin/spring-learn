@@ -37,8 +37,8 @@ public class TrackCounter {
      */
     @Before("trackPlayed(trackNumber)")
     public void countTrack(int trackNumber) {
-        int cuurentCount = getPlayCount(trackNumber);
-        trackCounts.put(trackNumber, cuurentCount + 1);
+        int currentCount = getPlayCount(trackNumber);
+        trackCounts.put(trackNumber, currentCount + 1);
     }
 
     /**

@@ -4,11 +4,13 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 /**
+ * 优化后的 GoodAudience
+ *
  * @author yinxing
  * @date 2019/4/26
  */
 @Aspect
-public class Audience2 {
+public class GoodAudience {
 
     /**
      * 定义命名的切点

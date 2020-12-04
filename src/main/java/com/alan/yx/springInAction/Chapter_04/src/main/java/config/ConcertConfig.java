@@ -1,6 +1,6 @@
 package com.alan.yx.springInAction.Chapter_04.src.main.java.config;
 
-import com.alan.yx.springInAction.Chapter_04.src.main.java.aop.Audience;
+import com.alan.yx.springInAction.Chapter_04.src.main.java.aop.BadAudience;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class ConcertConfig {
 
     @Bean
-    public Audience Audience() {
-        return new Audience();
+    public BadAudience Audience() {
+        return new BadAudience();
     }
 }
