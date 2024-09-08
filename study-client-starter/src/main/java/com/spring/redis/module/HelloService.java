@@ -1,4 +1,4 @@
-package com.spring.study.module;
+package com.spring.redis.module;
 
 /**
  * 第 1 步: 定义一个接口，可以认为它是当前独立业务开发模块对外暴露的可以直接调用接口

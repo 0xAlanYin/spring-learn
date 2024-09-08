@@ -1,4 +1,4 @@
-package com.spring.study;
+package com.spring.redis;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan({"com.spring.study.module"})
+@ComponentScan({"com.spring.redis.module"})
 // 如果配置属性中显示的声明 study.enable=true，则当前的整套体系(即这个 starter)才生效
 @ConditionalOnProperty(prefix = "study", name = "enable", havingValue = "true")
 public class HelloServiceAutoConfiguration {
